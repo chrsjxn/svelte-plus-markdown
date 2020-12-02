@@ -1,5 +1,7 @@
 <!-- src/Markdown.svelte -->
 <script>
+    import { beforeUpdate } from 'svelte'
+
     import MarkdownIt from 'markdown-it'
     import 'highlight.js/styles/a11y-light.css'
   
@@ -22,8 +24,11 @@
       },
     })
   
-    // Render to an html string
-    const rendered = md.render(markdown)
+    let rendered = ''
+
+    beforeUpdate(() => {
+      rendered = md.render(markdown)
+    })
   </script>
   
   <!-- Render with the `@html` directive -->
